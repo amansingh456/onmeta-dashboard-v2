@@ -7,6 +7,7 @@ import allAssests from "@/app/assets/images";
 
 export default function AuthClientWrapper() {
   const [isLogin, setIsLogin] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const titleVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -50,19 +51,21 @@ export default function AuthClientWrapper() {
       " "
     );
 
+  const handleAnimationComplete = () => {
+    setShowForm(true);
+  };
+
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
-      {/* Left Side - Branding with Grid Background */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1 }}
         className="relative w-full md:w-[70%] p-8 md:p-16 flex items-center justify-center overflow-hidden"
+        onAnimationComplete={handleAnimationComplete}
       >
-        {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0A0A0A] to-[#1A1A1A] animate-gradient" />
 
-        {/* Grid Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
           style={{
@@ -70,13 +73,11 @@ export default function AuthClientWrapper() {
           }}
         />
 
-        {/* Animated Gradient Overlay */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent animate-pulse" />
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
         </div>
 
-        {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             animate={{
@@ -105,7 +106,6 @@ export default function AuthClientWrapper() {
           />
         </div>
 
-        {/* Content */}
         <div className="relative z-10 max-w-2xl">
           <motion.div
             variants={titleVariants}
@@ -113,7 +113,7 @@ export default function AuthClientWrapper() {
             animate="visible"
           >
             <motion.h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              className="text-4xl md:text-6xl font-bold text-text-dark mb-6"
               animate={{
                 textShadow: [
                   "0 0 8px rgba(255,255,255,0.4)",
@@ -135,7 +135,7 @@ export default function AuthClientWrapper() {
             variants={taglineVariants}
             initial="hidden"
             animate="visible"
-            className="text-xl md:text-2xl text-gray-300 leading-relaxed"
+            className="text-xl md:text-2xl text-background-light leading-relaxed"
           >
             {taglineWords.map((word, index) => (
               <motion.span
@@ -150,18 +150,18 @@ export default function AuthClientWrapper() {
         </div>
       </motion.div>
 
-      {/* Right Side - Auth Forms */}
-      <div className="w-full md:w-[30%] bg-white dark:bg-sidebar-dark p-8 flex items-center justify-center">
+      <div className="w-full md:w-[30%] bg-sidebar-light  p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           <AnimatePresence mode="wait">
-            {isLogin ? (
-              <LoginForm key="login" onSwitchForm={() => setIsLogin(false)} />
-            ) : (
-              <SignupForm
-                key="register"
-                onSwitchForm={() => setIsLogin(true)}
-              />
-            )}
+            {showForm &&
+              (isLogin ? (
+                <LoginForm key="login" onSwitchForm={() => setIsLogin(false)} />
+              ) : (
+                <SignupForm
+                  key="register"
+                  onSwitchForm={() => setIsLogin(true)}
+                />
+              ))}
           </AnimatePresence>
         </div>
       </div>

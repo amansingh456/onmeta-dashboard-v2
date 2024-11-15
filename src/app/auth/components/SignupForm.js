@@ -17,17 +17,15 @@ export default function SignupForm({ onSwitchForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Reset error state
+    setError("");
 
     if (step === 1) {
-      // Simulate signup API call
       if (formData.email && formData.password) {
-        setStep(2); // Move to OTP step
+        setStep(2);
       } else {
         setError("Please fill in all fields");
       }
     } else {
-      // Simulate OTP verification
       if (formData.otp === "123456") {
         localStorage.setItem("isLoggedIn", "true");
         router.push("/");
@@ -44,7 +42,7 @@ export default function SignupForm({ onSwitchForm }) {
       exit={{ opacity: 0, x: -20 }}
       className="w-full"
     >
-      <h2 className="text-3xl font-bold mb-6 text-text-light dark:text-text-dark">
+      <h2 className="text-3xl font-bold mb-6 text-text-light">
         {step === 1 ? "Create Account" : "Verify Email"}
       </h2>
 
@@ -54,7 +52,7 @@ export default function SignupForm({ onSwitchForm }) {
         {step === 1 ? (
           <>
             <div>
-              <label className="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+              <label className="block text-sm font-medium text-text-light mb-2">
                 Email
               </label>
               <div className="relative">
@@ -62,7 +60,7 @@ export default function SignupForm({ onSwitchForm }) {
                 <input
                   type="email"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50 text-text-light outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={(e) =>
@@ -73,7 +71,7 @@ export default function SignupForm({ onSwitchForm }) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text-light dark:text-text-dark mb-2">
+              <label className="block text-sm font-medium text-text-light mb-2">
                 Password
               </label>
               <div className="relative">
@@ -81,7 +79,7 @@ export default function SignupForm({ onSwitchForm }) {
                 <input
                   type="password"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50  text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
                   placeholder="Create a password"
                   value={formData.password}
                   onChange={(e) =>
@@ -96,7 +94,7 @@ export default function SignupForm({ onSwitchForm }) {
             <input
               type="text"
               required
-              className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 text-center text-2xl "
+              className="w-full px-4 py-3 bg-gray-50  text-text-light outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 text-center text-2xl "
               placeholder="Enter OTP"
               maxLength={6}
               value={formData.otp}
@@ -115,7 +113,7 @@ export default function SignupForm({ onSwitchForm }) {
           <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
         </button>
 
-        <p className="text-center text-text-semidark">
+        <p className=" text-sm font-medium text-text-semidark">
           Already have an account?{" "}
           <button
             type="button"
