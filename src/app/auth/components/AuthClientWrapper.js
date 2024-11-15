@@ -22,30 +22,6 @@ export default function AuthClientWrapper() {
     },
   };
 
-  const taglineVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1.5,
-        delay: 1.2,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const wordVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
   const taglineWords =
     "Accelerate your business with an easy-to-integrate, crypto on-ramp for your platform".split(
       " "
@@ -66,91 +42,33 @@ export default function AuthClientWrapper() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0A0A0A] to-[#1A1A1A] animate-gradient" />
 
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
-          style={{
-            backgroundImage: `url(${allAssests.gridDesktop})`,
-          }}
-        />
-
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent animate-pulse" />
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" />
-        </div>
-
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            animate={{
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-purple-900/10 via-transparent to-transparent rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "linear",
-              delay: 2,
-            }}
-            className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-blue-900/10 via-transparent to-transparent rounded-full blur-3xl"
-          />
-        </div>
-
         <div className="relative z-10 max-w-2xl">
           <motion.div
             variants={titleVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold text-text-dark mb-6"
-              animate={{
-                textShadow: [
-                  "0 0 8px rgba(255,255,255,0.4)",
-                  "0 0 12px rgba(255,255,255,0.6)",
-                  "0 0 8px rgba(255,255,255,0.4)",
-                ],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
+            <motion.h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               ONMETA
             </motion.h1>
           </motion.div>
 
           <motion.div
-            variants={taglineVariants}
-            initial="hidden"
-            animate="visible"
-            className="text-xl md:text-2xl text-background-light leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="text-xl md:text-2xl text-gray-300 leading-relaxed"
           >
             {taglineWords.map((word, index) => (
-              <motion.span
-                key={index}
-                variants={wordVariants}
-                className="inline-block mr-2"
-              >
+              <span key={index} className="inline-block mr-2">
                 {word}
-              </motion.span>
+              </span>
             ))}
           </motion.div>
         </div>
       </motion.div>
 
-      <div className="w-full md:w-[30%] bg-sidebar-light  p-8 flex items-center justify-center">
+      <div className="w-full md:w-[30%] bg-white dark:bg-sidebar-dark p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           <AnimatePresence mode="wait">
             {showForm &&
