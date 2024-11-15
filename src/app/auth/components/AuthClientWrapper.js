@@ -22,6 +22,21 @@ export default function AuthClientWrapper() {
     },
   };
 
+  const glowingAnimation = {
+    animate: {
+      textShadow: [
+        "0 0 8px rgba(255, 255, 255, 0.4)",
+        "0 0 12px rgba(255, 255, 255, 0.6)",
+        "0 0 8px rgba(255, 255, 255, 0.4)",
+      ],
+    },
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      repeatType: "reverse",
+    },
+  };
+
   const taglineWords =
     "Accelerate your business with an easy-to-integrate, crypto on-ramp for your platform".split(
       " "
@@ -56,7 +71,10 @@ export default function AuthClientWrapper() {
             initial="hidden"
             animate="visible"
           >
-            <motion.h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              {...glowingAnimation}
+            >
               ONMETA
             </motion.h1>
           </motion.div>
