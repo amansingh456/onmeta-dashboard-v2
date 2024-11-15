@@ -42,6 +42,14 @@ export default function AuthClientWrapper() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-black via-[#0A0A0A] to-[#1A1A1A] animate-gradient" />
 
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
+          style={{
+            backgroundImage: `url(${allAssests.gridDesktop})`,
+            zIndex: 1,
+          }}
+        />
+
         <div className="relative z-10 max-w-2xl">
           <motion.div
             variants={titleVariants}

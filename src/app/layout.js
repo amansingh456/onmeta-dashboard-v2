@@ -16,7 +16,7 @@ const satisfy = Satisfy({
 });
 
 export const metadata = {
-  title: "ONMETA-DASHBOARD",
+  title: "Dashboard | Onmeta",
   description: "",
 };
 
