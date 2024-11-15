@@ -1,15 +1,14 @@
 import AuthComponent from "./components/AuthComponent";
+import { redirect } from "next/navigation";
+import { parseCookies } from "nookies";
 
 export default function AuthPage() {
-  const user =
-    typeof window !== "undefined" ? localStorage.getItem("isLoggedIn") : null;
+  const cookies = parseCookies();
+  const isLoggedIn = cookies.isLoggedIn;
 
   // If user is logged in, redirect to home page
-  if (user) {
-    if (typeof window !== "undefined") {
-      window.location.href = "/";
-    }
-    return null; // Return null while redirecting
+  if (isLoggedIn) {
+    redirect("/"); // Use Next.js redirect function
   }
 
   return <AuthComponent />;

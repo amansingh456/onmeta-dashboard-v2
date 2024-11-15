@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FiMail, FiLock, FiArrowRight } from "react-icons/fi";
+import { setCookie } from "nookies";
 
 export default function LoginForm({ onSwitchForm }) {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function LoginForm({ onSwitchForm }) {
       formData.email === "test@example.com" &&
       formData.password === "password"
     ) {
-      localStorage.setItem("isLoggedIn", "true");
+      setCookie(null, "isLoggedIn", "true", { path: "/" });
       router.push("/");
     } else {
       setError("Invalid email or password");
@@ -43,20 +44,14 @@ export default function LoginForm({ onSwitchForm }) {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium mb-2 text-text-light">
-            Email
-          </label>
+          <label className="block text-sm font-medium mb-2">Email</label>
           <div className="relative">
             <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-text-semidark" />
             <input
               type="email"
               required
-              className="w-full pl-10 pr-4 py-3 bg-gray-50  text-text-light outline-none focus:ring-1 focus:ring-gray-900 "
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900"
               placeholder="Enter your email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
             />
           </div>
         </div>
