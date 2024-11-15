@@ -1,9 +1,12 @@
 "use client";
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
 import { motion, AnimatePresence } from "framer-motion";
 import allAssests from "@/app/assets/images";
+
+// Dynamically import LoginForm and SignupForm
+const LoginForm = dynamic(() => import("./LoginForm"));
+const SignupForm = dynamic(() => import("./SignupForm"));
 
 export default function AuthClientWrapper() {
   const [isLogin, setIsLogin] = useState(true);
@@ -48,6 +51,7 @@ export default function AuthClientWrapper() {
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
+      {/* Left Side - Branding with Grid Background */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -94,6 +98,7 @@ export default function AuthClientWrapper() {
         </div>
       </motion.div>
 
+      {/* Right Side - Auth Forms */}
       <div className="w-full md:w-[30%] bg-white dark:bg-sidebar-dark p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           <AnimatePresence mode="wait">

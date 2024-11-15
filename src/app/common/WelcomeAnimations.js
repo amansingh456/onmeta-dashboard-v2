@@ -17,7 +17,7 @@ export default function WelcomeAnimations({ letters }) {
             repeat: Infinity,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#cceadd] via-[#66c29b] to-[#009a59] blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#171717] via-[#66c29b] to-[#009a59] blur-3xl" />
         </motion.div>
 
         <motion.div
@@ -52,7 +52,7 @@ export default function WelcomeAnimations({ letters }) {
               opacity: 1,
             }}
             transition={{
-              delay: letters.length * 0.2 + 0.5,
+              delay: letters.length * 0.1 + 0.5,
               duration: 0.8,
             }}
             className="tracking-wide font-tagline text-2xl md:text-3xl text-gray-400 italic"
@@ -72,6 +72,7 @@ export default function WelcomeAnimations({ letters }) {
             </motion.span>
           </motion.p>
 
+          {/* Dot Animation */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{
