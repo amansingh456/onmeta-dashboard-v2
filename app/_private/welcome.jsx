@@ -1,10 +1,9 @@
-"use client";
 import { motion } from "framer-motion";
 import Loader from "../_components/loading";
 
-export default function WelcomeAnimations({ letters }) {
+export default function WelcomeAnimations({ letters, tagLine, loading }) {
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-background-dark">
+    <div className="h-screen w-screen flex items-center justify-center bg-background-dark p-4 sm:p-6 md:p-8">
       <div className="relative w-full max-w-4xl mx-auto">
         <motion.div
           className="absolute inset-0 opacity-20"
@@ -21,13 +20,9 @@ export default function WelcomeAnimations({ letters }) {
           <div className="absolute inset-0 bg-gradient-to-r from-background-dark via-change-light to-change-dark blur-3xl" />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-center relative z-10"
-        >
-          <motion.div className="mb-8">
-            <div className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-change-dark via-change-extraLight to-change-dark bg-clip-text text-transparent">
+        <motion.div className="text-center relative z-10">
+          <motion.div className="mb-4 sm:mb-6 md:mb-8">
+            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-change-dark via-change-extraLight to-change-dark bg-clip-text text-transparent">
               {letters.map((letter, index) => (
                 <motion.span
                   key={index}
@@ -56,7 +51,7 @@ export default function WelcomeAnimations({ letters }) {
               delay: letters.length * 0.1 + 0.5,
               duration: 0.8,
             }}
-            className="tracking-wide font-tagline text-2xl md:text-3xl text-text-semidark italic"
+            className="tracking-wide font-tagline text-xl sm:text-2xl md:text-3xl text-text-semidark italic px-4 sm:px-6"
           >
             <motion.span
               animate={{
@@ -69,64 +64,12 @@ export default function WelcomeAnimations({ letters }) {
               }}
               className="inline-block"
             >
-              Connecting Real World to Crypto World
+              {" "}
+              {tagLine}
             </motion.span>
           </motion.p>
 
-          {/* Dot Animation */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              delay: letters.length * 0.2 + 1.3,
-              duration: 0.5,
-            }}
-            className="mt-8"
-          >
-            <div className="flex justify-center gap-2">
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatDelay: 0.2,
-                }}
-                className="w-2 h-2 rounded-full bg-[#cceadd]"
-              />
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatDelay: 0.2,
-                  delay: 0.2,
-                }}
-                className="w-2 h-2 rounded-full bg-[#66c29b]"
-              />
-              <motion.div
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatDelay: 0.2,
-                  delay: 0.4,
-                }}
-                className="w-2 h-2 rounded-full bg-[#009a59]"
-              />
-            </div>
-          </motion.div> */}
-          <Loader loading={true} delayInSeconds={2} />
+          <Loader loading={loading} delayInSeconds={2} />
         </motion.div>
       </div>
     </div>

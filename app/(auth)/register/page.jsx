@@ -81,7 +81,7 @@ export default function Register() {
     <div className="min-h-screen w-full flex flex-col md:flex-row">
       <SideImg handleAnimationComplete={handleAnimationComplete} />
 
-      <div className="w-full md:w-[30%] bg-white p-8 flex items-center justify-center">
+      <div className="w-full h-[60vh] md:w-[30%] md:h-screen bg-white p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
           {showForm && (
             <motion.div

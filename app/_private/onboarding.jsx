@@ -9,6 +9,8 @@ export default function Onboarding() {
   const router = useRouter();
 
   const letters = "ONMETA".split("");
+  const tagLine = "Connecting Real World to Crypto World";
+  const loading = true;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,5 +20,5 @@ export default function Onboarding() {
     return () => clearTimeout(timer);
   }, [router]);
 
-  return <Welcome letters={letters} />;
+  return <Welcome letters={letters} tagLine={tagLine} loading={loading} />;
 }

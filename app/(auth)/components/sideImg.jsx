@@ -41,7 +41,7 @@ export default function SideImg({ handleAnimationComplete }) {
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
-      className="relative w-full md:w-[70%] p-8 md:p-16 flex items-center justify-center overflow-hidden"
+      className="relative w-full h-[40vh] md:h-screen md:w-[70%] p-4 sm:p-6 md:p-8 lg:p-16 flex items-center justify-center overflow-hidden"
       onAnimationComplete={handleAnimationComplete}
     >
       <div className="absolute inset-0 aninmate-gradient" />
@@ -54,10 +54,10 @@ export default function SideImg({ handleAnimationComplete }) {
         }}
       />
 
-      <div className="relative z-10 max-w-2xl">
+      <div className="relative z-10 max-w-2xl px-4 sm:px-6 md:px-8">
         <motion.div variants={titleVariants} initial="hidden" animate="visible">
           <motion.h1
-            className="text-4xl md:text-6xl font-bold text-text-light mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-light mb-4 sm:mb-6"
             {...glowingAnimation}
           >
             ONMETA
@@ -68,7 +68,7 @@ export default function SideImg({ handleAnimationComplete }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
-          className="text-xl md:text-2xl text-text-semidark leading-relaxed"
+          className="text-lg sm:text-xl md:text-2xl text-text-semidark leading-relaxed"
         >
           {taglineWords.map((word, index) => (
             <span key={index} className="inline-block mr-2">
