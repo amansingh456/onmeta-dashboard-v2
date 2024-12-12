@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
-const WelcomeAnimations = dynamic(() => import("./WelcomeAnimations"));
+const Welcome = dynamic(() => import("./welcome"));
 
 export default function Onboarding() {
   const router = useRouter();
@@ -12,11 +12,11 @@ export default function Onboarding() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/auth");
+      router.push("/login");
     }, 5000);
 
     return () => clearTimeout(timer);
   }, [router]);
 
-  return <WelcomeAnimations letters={letters} />;
+  return <Welcome letters={letters} />;
 }

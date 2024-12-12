@@ -4,7 +4,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -19,10 +18,13 @@ module.exports = {
         text: {
           light: "#FFFFFF",
           dark: "#000000",
-          semidark: "#B5B8BF",
+          semidark: "#A2A5AB",
         },
         change: {
-          light: "#00864e",
+          extraLight: "#cceadd",
+          light: "#66c29b",
+          semidark: "#00864e",
+          dark: "#009a59",
         },
       },
       fontFamily: {

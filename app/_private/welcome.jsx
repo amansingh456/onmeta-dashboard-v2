@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Loader from "../_components/loading";
 
 export default function WelcomeAnimations({ letters }) {
   return (
@@ -17,7 +18,7 @@ export default function WelcomeAnimations({ letters }) {
             repeat: Infinity,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#171717] via-[#66c29b] to-[#009a59] blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background-dark via-change-light to-change-dark blur-3xl" />
         </motion.div>
 
         <motion.div
@@ -26,7 +27,7 @@ export default function WelcomeAnimations({ letters }) {
           className="text-center relative z-10"
         >
           <motion.div className="mb-8">
-            <div className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-[#cceadd] via-[#66c29b] to-[#009a59] bg-clip-text text-transparent">
+            <div className="text-7xl md:text-8xl font-bold bg-gradient-to-r from-change-dark via-change-extraLight to-change-dark bg-clip-text text-transparent">
               {letters.map((letter, index) => (
                 <motion.span
                   key={index}
@@ -55,7 +56,7 @@ export default function WelcomeAnimations({ letters }) {
               delay: letters.length * 0.1 + 0.5,
               duration: 0.8,
             }}
-            className="tracking-wide font-tagline text-2xl md:text-3xl text-gray-400 italic"
+            className="tracking-wide font-tagline text-2xl md:text-3xl text-text-semidark italic"
           >
             <motion.span
               animate={{
@@ -73,7 +74,7 @@ export default function WelcomeAnimations({ letters }) {
           </motion.p>
 
           {/* Dot Animation */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
@@ -124,7 +125,8 @@ export default function WelcomeAnimations({ letters }) {
                 className="w-2 h-2 rounded-full bg-[#009a59]"
               />
             </div>
-          </motion.div>
+          </motion.div> */}
+          <Loader loading={true} delayInSeconds={2} />
         </motion.div>
       </div>
     </div>
