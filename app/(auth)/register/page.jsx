@@ -1,9 +1,11 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiLock, FiMail, FiKey } from "react-icons/fi";
 import { checkEmailValid, checkPasswordValid } from "../../utils/validators";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { messages } from "../../utils/messages";
 
 // Dynamically import for components
 const SideImg = dynamic(() => import("../components/sideImg"));
@@ -29,6 +31,8 @@ export default function Register() {
     otp: "",
   });
 
+  //   const { executeRecaptcha } = useGoogleReCaptcha();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,14 +54,28 @@ export default function Register() {
         setStep(2);
       } else {
         // please enter email along with OTPs
+        // and if otp is verified make user login
       }
     } else {
+      //please enter email along with OTPs
+      // and if success is true then make user login
     }
   };
 
   const handleAnimationComplete = () => {
     setShowForm(true);
   };
+
+  //   useEffect(() => {
+  //     if (!executeRecaptcha) {
+  //       return;
+  //     }
+  //     executeRecaptcha("enquiryFormSubmit").then((res) => {
+  //       if (setUserData) {
+  //         setUserData((prev) => ({ ...prev, token: res }));
+  //       }
+  //     });
+  //   }, [executeRecaptcha]);
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">

@@ -10,7 +10,7 @@ export default function AuthPage() {
 
   // If user is logged in, redirect to home page
   if (!isLoggedIn) {
-    redirect("/auth");
+    redirect("/login");
   }
 
   return <AppLayout />;

@@ -1,9 +1,11 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { FiLock, FiMail } from "react-icons/fi";
 import Link from "next/link";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useRouter } from "next/navigation";
 
 // Dynamically import for components
 const SideImg = dynamic(() => import("../components/sideImg"));
@@ -16,29 +18,48 @@ const AuthHeadLine = dynamic(() => import("../components/authMainLine"));
 export default function Login() {
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState("");
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    token: "",
   });
+  const router = useRouter();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
-    if (
-      formData.email === "test@example.com" &&
-      formData.password === "password"
-    ) {
-      setCookie(null, "isLoggedIn", "true", { path: "/" });
-      router.push("/");
-    } else {
-      setError("Invalid email or password");
+    try {
+      const token = await fetchReCaptchaToken();
+
+      const updatedFormData = { ...formData, token };
+
+      if (
+        formData.email === "test@example.com" &&
+        formData.password === "password"
+      ) {
+        console.log(updatedFormData);
+        router.push("/register");
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (error) {
+      setError(error);
     }
   };
 
   const handleAnimationComplete = () => {
     setShowForm(true);
+  };
+
+  const fetchReCaptchaToken = async () => {
+    if (!executeRecaptcha) {
+      setError("ReCaptcha is not ready");
+      return;
+    }
+    const token = await executeRecaptcha("enquiryFormSubmit");
+    return token;
   };
 
   return (

@@ -1,9 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FiKey, FiLock, FiMail } from "react-icons/fi";
-import Link from "next/link";
+import { FiKey, FiMail } from "react-icons/fi";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // Dynamically import for components
 const SideImg = dynamic(() => import("../components/sideImg"));
@@ -24,24 +24,46 @@ export default function ResetPass() {
   const [otpData, setOtpData] = useState({
     email: "",
     otp: "",
+    token: "",
   });
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    console.log(123);
-    if (formData.email === "test@example.com") {
-      console.log(formData.email);
-      setStep(2);
-      setCookie(null, "isLoggedIn", "true", { path: "/" });
+
+    if (step === 1) {
+      if (formData?.email) {
+        if (!checkEmailValid(formData.email)) {
+          return setError(messages.checkMail);
+        }
+
+        // if (userData.token === "") {
+        //   return setError(messages.captchaWarning);
+        // }
+
+        setStep(2);
+      } else {
+        setError("please enter a email");
+      }
     } else {
-      setError("Invalid email or password");
+      // please enter email along with OTPs and if success is true, send user to login route
     }
   };
 
   const handleAnimationComplete = () => {
     setShowForm(true);
   };
+
+  useEffect(() => {
+    if (!executeRecaptcha) {
+      return;
+    }
+    executeRecaptcha("enquiryFormSubmit").then((res) => {
+      if (setOtpData) {
+        setOtpData((prev) => ({ ...prev, token: res }));
+      }
+    });
+  }, [executeRecaptcha]);
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
