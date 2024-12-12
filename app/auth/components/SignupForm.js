@@ -2,36 +2,42 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { FiMail, FiLock, FiArrowRight } from "react-icons/fi";
+import { messages } from "../../utils/messages";
+import { checkEmailValid, checkPasswordValid } from "../../utils/validators";
 
 export default function SignupForm({ onSwitchForm }) {
-  const router = useRouter();
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({
+  const [error, setError] = useState("");
+
+  const [userData, setUserData] = useState({
     email: "",
     password: "",
-    otp: "",
+    token: "",
   });
-  const [error, setError] = useState("");
+
+  // const [isCaptchaDone, setisCaptchaDone] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
     if (step === 1) {
-      if (formData.email && formData.password) {
+      if (userData?.email && userData?.password) {
+        if (!checkEmailValid(userData.email)) {
+          return setError(messages.checkMail);
+        }
+        if (userData.password === "") {
+          return setError(messages.enterPassword);
+        }
+        if (!checkPasswordValid(userData.password)) {
+          return setError(messages.passwordWarning);
+        }
+        // if (userData.token === "") {
+        //   return setError(messages.captchaWarning);
+        // }
         setStep(2);
       } else {
-        setError("Please fill in all fields");
       }
     } else {
-      if (formData.otp === "123456") {
-        localStorage.setItem("isLoggedIn", "true");
-        router.push("/");
-      } else {
-        setError("Invalid OTP");
-      }
     }
   };
 
@@ -45,10 +51,9 @@ export default function SignupForm({ onSwitchForm }) {
       <h2 className="text-3xl font-bold mb-6 text-text-light">
         {step === 1 ? "Create Account" : "Verify Email"}
       </h2>
+      {error && <p className="text-red-500 mb-2 italic">{error}</p>}
 
-      {error && <p className="text-red-500">{error}</p>}
-
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6">
         {step === 1 ? (
           <>
             <div>
@@ -60,11 +65,11 @@ export default function SignupForm({ onSwitchForm }) {
                 <input
                   type="email"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50 text-text-light outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50 text-text-light outline-none focus:ring-1 focus:ring-gray-900"
                   placeholder="Enter your email"
-                  value={formData.email}
+                  value={userData.email}
                   onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
+                    setUserData({ ...userData, email: e.target.value })
                   }
                 />
               </div>
@@ -79,11 +84,11 @@ export default function SignupForm({ onSwitchForm }) {
                 <input
                   type="password"
                   required
-                  className="w-full pl-10 pr-4 py-3 bg-gray-50  text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-50  text-text-light  outline-none focus:ring-1 focus:ring-gray-900 "
                   placeholder="Create a password"
-                  value={formData.password}
+                  value={userData.password}
                   onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
+                    setUserData({ ...userData, password: e.target.value })
                   }
                 />
               </div>
@@ -94,12 +99,12 @@ export default function SignupForm({ onSwitchForm }) {
             <input
               type="text"
               required
-              className="w-full px-4 py-3 bg-gray-50  text-text-light outline-none focus:ring-1 focus:ring-gray-900 dark:focus:ring-gray-700 text-center text-2xl "
-              placeholder="Enter OTP"
+              className="w-full px-4 py-3 bg-gray-50  text-text-light outline-none focus:ring-1 focus:ring-gray-900 text-center text-lg "
+              placeholder="Enter Otp"
               maxLength={6}
-              value={formData.otp}
+              value={userData.otp}
               onChange={(e) =>
-                setFormData({ ...formData, otp: e.target.value })
+                setUserData({ ...userData, otp: e.target.value })
               }
             />
           </div>
@@ -107,7 +112,8 @@ export default function SignupForm({ onSwitchForm }) {
 
         <button
           type="submit"
-          className="w-full bg-gray-900 dark:bg-gray-800 text-white py-3 hover:bg-black dark:hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 group"
+          onClick={handleSubmit}
+          className="w-full bg-gray-900  text-white py-3 hover:bg-black transition-colors btn-smooth flex items-center justify-center gap-2 group"
         >
           {step === 1 ? "Sign Up" : "Verify"}
           <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -118,7 +124,7 @@ export default function SignupForm({ onSwitchForm }) {
           <button
             type="button"
             onClick={onSwitchForm}
-            className="text-gray-900 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+            className="text-gray-900 hover:text-black transition-colors btn-smooth"
           >
             Sign in
           </button>

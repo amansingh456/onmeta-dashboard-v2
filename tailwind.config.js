@@ -1,24 +1,24 @@
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
+  // darkMode: "class",
   theme: {
     extend: {
       colors: {
         background: {
-          light: "#F5F8FD", // Main background light
-          dark: "#121212", // Main background dark
+          light: "#F5F8FD",
+          dark: "#121212",
         },
         sidebar: {
-          light: "#FFFFFF", // Sidebar light
-          dark: "#1E1E1E", // Sidebar dark
+          light: "#FFFFFF",
+          dark: "#1E1E1E",
         },
         text: {
-          light: "#000000", // Black text for light mode
-          dark: "#FFFFFF", // White text for dark mode
+          light: "#FFFFFF",
+          dark: "#000000",
           semidark: "#B5B8BF",
         },
         change: {
@@ -47,5 +47,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        ".btn-smooth": {
+          "@apply transform active:scale-95 duration-150 ease-in-out": {},
+        },
+      });
+    },
+  ],
 };

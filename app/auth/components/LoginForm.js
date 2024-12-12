@@ -1,13 +1,12 @@
 "use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FiMail, FiLock, FiArrowRight } from "react-icons/fi";
 import { setCookie } from "nookies";
 
 export default function LoginForm({ onSwitchForm }) {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -37,12 +36,12 @@ export default function LoginForm({ onSwitchForm }) {
       className="w-full"
     >
       <h2 className="text-3xl font-bold mb-6 text-text-light ">
-        Sign in to continue
+        SignIn to continue
       </h2>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-500 mb-2 italic">{error}</p>}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-2">Email</label>
           <div className="relative">
@@ -50,7 +49,7 @@ export default function LoginForm({ onSwitchForm }) {
             <input
               type="email"
               required
-              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light dark:text-text-dark outline-none focus:ring-1 focus:ring-gray-900"
+              className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-900 text-text-light outline-none focus:ring-1 focus:ring-gray-900"
               placeholder="Enter your email"
             />
           </div>
@@ -84,7 +83,8 @@ export default function LoginForm({ onSwitchForm }) {
 
         <button
           type="submit"
-          className="w-full bg-gray-900  text-white py-3 hover:bg-black transition-colors flex items-center justify-center gap-2 group"
+          onClick={handleSubmit}
+          className="w-full bg-gray-900  text-white py-3 hover:bg-black transition-colors btn-smooth flex items-center justify-center gap-2 group"
         >
           Sign In
           <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -95,7 +95,7 @@ export default function LoginForm({ onSwitchForm }) {
           <button
             type="button"
             onClick={onSwitchForm}
-            className="text-gray-900 hover:text-black  transition-colors"
+            className="text-gray-900 hover:text-black  transition-colors btn-smooth"
           >
             Create an account
           </button>

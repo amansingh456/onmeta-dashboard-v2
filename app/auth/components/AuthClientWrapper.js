@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import allAssests from "@/app/assets/images";
+import allAssests from "../../assets/images";
 
 // Dynamically import LoginForm and SignupForm
 const LoginForm = dynamic(() => import("./LoginForm"));
