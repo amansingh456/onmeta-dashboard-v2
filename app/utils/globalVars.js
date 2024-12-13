@@ -14,6 +14,5 @@ export const BASE_URL_META_ENTITY =
   process.env.NEXT_PUBLIC_ENV_BASE_URL_META_ENTITY;
 export const googleRecaptchaV3Key =
   process.env.NEXT_PUBLIC_ENV_googleRecaptchaV3PublicKey;
-export const googleRecaptchV3SecretToken =
-  process.env.NEXT_PUBLIC_ENV_recaptchaSecretToken;
+export const googleRecaptchV3SecretToken = process.env.recaptchaSecretToken;
 export const downloadLimit = process.env.NEXT_PUBLIC_ENV_DOWNLOAD_LIMIT;
