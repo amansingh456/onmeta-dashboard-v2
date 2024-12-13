@@ -2,16 +2,16 @@
 import { motion } from "framer-motion";
 import allAssests from "../../assets/images";
 
-export default function SideImg({ handleAnimationComplete }) {
+export default function SideImg() {
   const titleVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1.2,
+        duration: 0.9,
         ease: "easeOut",
-        delay: 0.5,
+        delay: 0.2,
       },
     },
   };
@@ -40,9 +40,9 @@ export default function SideImg({ handleAnimationComplete }) {
     <motion.div
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.8 }}
       className="relative w-full h-[40vh] md:h-screen md:w-[70%] p-4 sm:p-6 md:p-8 lg:p-16 flex items-center justify-center overflow-hidden"
-      onAnimationComplete={handleAnimationComplete}
+      // onAnimationComplete={handleAnimationComplete}
     >
       <div className="absolute inset-0 aninmate-gradient" />
 
@@ -67,7 +67,7 @@ export default function SideImg({ handleAnimationComplete }) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           className="text-lg sm:text-xl md:text-2xl text-text-semidark leading-relaxed"
         >
           {taglineWords.map((word, index) => (

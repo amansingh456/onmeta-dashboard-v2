@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const Welcome = dynamic(() => import("./_private/welcome"));
+const Welcome = dynamic(() => import("./_components/welcome"));
 
 export default function NotFoundPage() {
   const letters = "404".split("");

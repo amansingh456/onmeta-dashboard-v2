@@ -16,7 +16,6 @@ const IsHave = dynamic(() => import("../components/isHave"));
 const AuthHeadLine = dynamic(() => import("../components/authMainLine"));
 
 export default function Register() {
-  const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState("");
   const [step, setStep] = useState(1);
 
@@ -62,10 +61,6 @@ export default function Register() {
     }
   };
 
-  const handleAnimationComplete = () => {
-    setShowForm(true);
-  };
-
   //   useEffect(() => {
   //     if (!executeRecaptcha) {
   //       return;
@@ -79,76 +74,78 @@ export default function Register() {
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
-      <SideImg handleAnimationComplete={handleAnimationComplete} />
+      <SideImg />
 
       <div className="w-full h-[60vh] md:w-[30%] md:h-screen bg-white p-8 flex items-center justify-center">
         <div className="w-full max-w-md">
-          {showForm && (
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="w-full"
-            >
-              <AuthHeadLine
-                text={step === 1 ? "Create Account" : "Verify Email"}
-              />
-              <ErrorMessage error={error} />
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{
+              duration: 0.9,
+              ease: "easeInOut",
+            }}
+            className="w-full"
+          >
+            <AuthHeadLine
+              text={step === 1 ? "Create Account" : "Verify Email"}
+            />
+            <ErrorMessage error={error} />
 
-              <form className="space-y-6">
-                {step === 1 ? (
-                  <>
-                    <InputField
-                      type="email"
-                      label="Email"
-                      placeholder="Enter your email"
-                      value={userData.email}
-                      onChange={(e) =>
-                        setUserData({ ...userData, email: e.target.value })
-                      }
-                      icon={FiMail}
-                      required
-                    />
-
-                    <InputField
-                      type="password"
-                      label="Password"
-                      placeholder="Create a password"
-                      value={userData.password}
-                      onChange={(e) =>
-                        setUserData({ ...userData, password: e.target.value })
-                      }
-                      icon={FiLock}
-                      required
-                    />
-                  </>
-                ) : (
+            <form className="space-y-6">
+              {step === 1 ? (
+                <>
                   <InputField
-                    type="text"
-                    label="OTP"
-                    placeholder="Enter OTP"
-                    value={otpData.otp}
+                    type="email"
+                    label="Email"
+                    placeholder="Enter your email"
+                    value={userData.email}
                     onChange={(e) =>
-                      setOtpData({ ...otpData, otp: e.target.value })
+                      setUserData({ ...userData, email: e.target.value })
                     }
-                    icon={FiKey}
+                    icon={FiMail}
                     required
                   />
-                )}
 
-                <FormButton
-                  text={step === 1 ? "Sign Up" : "Verify"}
-                  onClick={handleSubmit}
+                  <InputField
+                    type="password"
+                    label="Password"
+                    placeholder="Create a password"
+                    value={userData.password}
+                    onChange={(e) =>
+                      setUserData({ ...userData, password: e.target.value })
+                    }
+                    icon={FiLock}
+                    required
+                  />
+                </>
+              ) : (
+                <InputField
+                  type="text"
+                  label="OTP"
+                  placeholder="Enter OTP"
+                  value={otpData.otp}
+                  onChange={(e) =>
+                    setOtpData({ ...otpData, otp: e.target.value })
+                  }
+                  icon={FiKey}
+                  required
                 />
+              )}
 
-                <IsHave
-                  text1={"Already have an account ? "}
-                  text2={"Sign In"}
-                  routePath={"/login"}
-                />
-              </form>
-            </motion.div>
-          )}
+              <FormButton
+                text={step === 1 ? "Sign Up" : "Verify"}
+                onClick={handleSubmit}
+              />
+
+              <IsHave
+                text1={"Already have an account ? "}
+                text2={"Sign In"}
+                routePath={"/login"}
+              />
+            </form>
+          </motion.div>
         </div>
       </div>
     </div>

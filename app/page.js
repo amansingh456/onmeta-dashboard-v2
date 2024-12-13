@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-const Onboarding = dynamic(() => import("./_private/onboarding"));
+const Onboarding = dynamic(() => import("./_components/onboarding"));
 
 export default function Home() {
   return <Onboarding />;
