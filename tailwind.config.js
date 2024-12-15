@@ -25,6 +25,9 @@ module.exports = {
           light: "#66c29b",
           semidark: "#00864e",
           dark: "#009a59",
+          errorRed: "#B91C1C",
+          warning: "#EAB308",
+          info: "#1D4ED8",
         },
       },
       fontFamily: {
@@ -34,6 +37,8 @@ module.exports = {
       animation: {
         gradient: "gradient 15s ease infinite",
         pulse: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        slidIn: "slideIn 0.3s ease-out",
+        wave: "wave 1.2s infinite",
       },
       keyframes: {
         gradient: {
@@ -44,6 +49,20 @@ module.exports = {
           "50%": {
             "background-size": "400% 400%",
             "background-position": "100% 50%",
+          },
+        },
+        slideIn: {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        wave: {
+          "0%, 100%": {
+            transform: "translateY(0) scale(1)",
+            opacity: 1,
+          },
+          "50%": {
+            transform: "translateY(-10px) scale(1.5)",
+            opacity: 0.8,
           },
         },
       },

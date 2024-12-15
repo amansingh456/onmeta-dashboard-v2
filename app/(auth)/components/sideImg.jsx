@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import allAssests from "../../assets/images";
+import GreenEffect from "../../_components/greenEffect";
 
 export default function SideImg() {
   const titleVariants = {
@@ -44,8 +45,7 @@ export default function SideImg() {
       className="relative w-full h-[40vh] md:h-screen md:w-[70%] p-4 sm:p-6 md:p-8 lg:p-16 flex items-center justify-center overflow-hidden"
       // onAnimationComplete={handleAnimationComplete}
     >
-      <div className="absolute inset-0 aninmate-gradient" />
-
+      <GreenEffect />
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
         style={{
@@ -53,7 +53,6 @@ export default function SideImg() {
           zIndex: 1,
         }}
       />
-
       <div className="relative z-10 max-w-2xl px-4 sm:px-6 md:px-8">
         <motion.div variants={titleVariants} initial="hidden" animate="visible">
           <motion.h1

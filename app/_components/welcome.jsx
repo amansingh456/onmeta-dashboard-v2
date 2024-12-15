@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Loader from "../_components/loading";
+import LoadingEffect from "./loadingEffect";
 
 export default function WelcomeAnimations({ letters, tagLine, loading }) {
   return (
@@ -69,7 +69,7 @@ export default function WelcomeAnimations({ letters, tagLine, loading }) {
             </motion.span>
           </motion.p>
 
-          <Loader loading={loading} delayInSeconds={2} />
+          <LoadingEffect />
         </motion.div>
       </div>
     </div>

@@ -1,22 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Loader = ({ loading, delayInSeconds = 0 }) => {
-  const [shouldRender, setShouldRender] = useState(false);
-
-  useEffect(() => {
-    if (loading) {
-      const timer = setTimeout(() => {
-        setShouldRender(true);
-      }, delayInSeconds * 1000);
-
-      return () => clearTimeout(timer);
-    } else {
-      setShouldRender(false);
-    }
-  }, [loading, delayInSeconds]);
-  if (!shouldRender) return null;
-
+const LoadingEffect = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -69,4 +54,4 @@ const Loader = ({ loading, delayInSeconds = 0 }) => {
   );
 };
 
-export default Loader;
+export default LoadingEffect;

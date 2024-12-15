@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Quicksand, Satisfy } from "next/font/google";
+import StoreProvider from "./redux/storeProvider";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -23,7 +24,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${quicksand.className} ${satisfy.variable}`}>
-      <body>{children}</body>
+      <body>
+        <StoreProvider>{children}</StoreProvider>
+      </body>
     </html>
   );
 }

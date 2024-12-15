@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FiKey, FiMail } from "react-icons/fi";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // Dynamically import for components
 const SideImg = dynamic(() => import("../components/sideImg"));
@@ -25,7 +24,6 @@ export default function ResetPass() {
     otp: "",
     token: "",
   });
-  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,17 +46,6 @@ export default function ResetPass() {
       // please enter email along with OTPs and if success is true, send user to login route
     }
   };
-
-  useEffect(() => {
-    if (!executeRecaptcha) {
-      return;
-    }
-    executeRecaptcha("enquiryFormSubmit").then((res) => {
-      if (setOtpData) {
-        setOtpData((prev) => ({ ...prev, token: res }));
-      }
-    });
-  }, [executeRecaptcha]);
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { initializeTheme, toggleTheme } from "../../store/slices/themeSlice";
+import { initializeTheme, toggleTheme } from "../../redux/themeSlice";
 
 export default function Layout({ children }) {
   // const dispatch = useDispatch();
