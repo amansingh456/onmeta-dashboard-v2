@@ -7,17 +7,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: {
-          light: "#F5F8FD",
-          dark: "#121212",
-        },
-        sidebar: {
-          light: "#FFFFFF",
-          dark: "#1E1E1E",
-        },
+        // background: {
+        //   light: "#F5F8FD",
+        //   dark: "#121212",
+        //   mainDark: "#000000",
+        // },
+        // sidebar: {
+        //   light: "#FFFFFF",
+        //   dark: "#1E1E1E",
+        // },
         text: {
-          light: "#FFFFFF",
-          dark: "#000000",
+          light: "#F5F8FD",
+          mainLight: "#ffffff",
+          dark: "#121212",
+          mainDark: "#000000",
           semidark: "#A2A5AB",
         },
         change: {
@@ -38,7 +41,6 @@ module.exports = {
         gradient: "gradient 15s ease infinite",
         pulse: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         slidIn: "slideIn 0.3s ease-out",
-        wave: "wave 1.2s infinite",
       },
       keyframes: {
         gradient: {
@@ -54,16 +56,6 @@ module.exports = {
         slideIn: {
           "0%": { transform: "translateX(100%)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
-        },
-        wave: {
-          "0%, 100%": {
-            transform: "translateY(0) scale(1)",
-            opacity: 1,
-          },
-          "50%": {
-            transform: "translateY(-10px) scale(1.5)",
-            opacity: 0.8,
-          },
         },
       },
     },

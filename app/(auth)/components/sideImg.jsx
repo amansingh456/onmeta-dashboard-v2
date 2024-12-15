@@ -42,12 +42,12 @@ export default function SideImg() {
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full h-[40vh] md:h-screen md:w-[70%] p-4 sm:p-6 md:p-8 lg:p-16 flex items-center justify-center overflow-hidden"
+      className="relative w-full h-[40vh] md:h-screen md:w-[70%] p-4 sm:p-6 md:p-8 lg:p-16 flex items-center justify-center overflow-hidden bg-text-dark"
       // onAnimationComplete={handleAnimationComplete}
     >
-      <GreenEffect />
+      <GreenEffect percent={"20%"} />
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100"
+        className="absolute inset-0  bg-cover bg-center bg-no-repeat opacity-100"
         style={{
           backgroundImage: `url(${allAssests.gridDesktop})`,
           zIndex: 1,

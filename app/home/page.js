@@ -1,7 +1,8 @@
-import dynamic from "next/dynamic";
-
-const AppLayout = dynamic(() => import("./components/AppLayout.js"));
-
-export default function AuthPage() {
-  return <AppLayout />;
+export default function MainPage() {
+  return (
+    <div className="bg-white">
+      <h1>Dashboard Home</h1>
+      <p>Welcome to your dashboard!</p>
+    </div>
+  );
 }

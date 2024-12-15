@@ -3,7 +3,7 @@ import LoadingEffect from "./loadingEffect";
 
 export default function WelcomeAnimations({ letters, tagLine, loading }) {
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-background-dark p-4 sm:p-6 md:p-8">
+    <div className="h-screen w-screen flex items-center justify-center bg-text-dark p-4 sm:p-6 md:p-8">
       <div className="relative w-full max-w-4xl mx-auto">
         <motion.div
           className="absolute inset-0 opacity-20"
@@ -17,7 +17,7 @@ export default function WelcomeAnimations({ letters, tagLine, loading }) {
             repeat: Infinity,
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-background-dark via-change-light to-change-dark blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-text-dark via-change-light to-change-dark blur-3xl" />
         </motion.div>
 
         <motion.div className="text-center relative z-10">
