@@ -5,8 +5,8 @@ import TopSection from "./sideBar/topSection";
 
 const SideNav = () => {
   return (
-    <nav className="flex flex-col w-full h-full bg-text-dark text-text-light p-4 ">
-      <div className="flex flex-col items-center justify-center gap-6 h-[35%] ">
+    <nav className="flex flex-col w-full h-full bg-text-dark text-text-light">
+      <div className="flex flex-col items-center justify-center gap-6 h-[35%]">
         <TopSection />
       </div>
 

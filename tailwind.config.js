@@ -26,7 +26,7 @@ module.exports = {
         change: {
           extraLight: "#cceadd",
           light: "#66c29b",
-          semidark: "#00864e",
+          semidark: "#00864d",
           dark: "#009a59",
           errorRed: "#B91C1C",
           warning: "#EAB308",
@@ -41,6 +41,8 @@ module.exports = {
         gradient: "gradient 15s ease infinite",
         pulse: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         slidIn: "slideIn 0.3s ease-out",
+        wave: "wave 1s infinite ease-in-out",
+        fadeInGlow: "fadeInGlow 2s ease-out forwards",
       },
       keyframes: {
         gradient: {
@@ -56,6 +58,19 @@ module.exports = {
         slideIn: {
           "0%": { transform: "translateX(100%)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+
+        wave: {
+          "0%, 100%": { transform: "scaleY(1)", opacity: "1" },
+          "50%": { transform: "scaleY(2)", opacity: "0.5" },
+        },
+        fadeInGlow: {
+          "0%": { opacity: 0, textShadow: "0 0 0 rgba(0, 0, 0, 0)" },
+          "50%": {
+            opacity: 0.5,
+            textShadow: "0 0 8px rgba(255, 255, 255, 0.7)",
+          },
+          "100%": { opacity: 1, textShadow: "0 0 10px rgba(255, 255, 255, 1)" },
         },
       },
     },

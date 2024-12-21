@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nivo/pie": "^0.88.0",
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
+    "echarts": "^5.5.1",
     "framer-motion": "^11.11.13",
     "next": "15.0.3",
     "nookies": "^2.5.2",

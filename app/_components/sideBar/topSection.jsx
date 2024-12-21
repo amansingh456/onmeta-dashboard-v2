@@ -1,11 +1,18 @@
 import Image from "next/image";
 import GreenEffect from "../greenEffect";
+import allAssests from "../../assets/images";
 
 const TopSection = () => {
   return (
     <>
       <GreenEffect percent={"10%"} />
-      <div className="text-2xl font-bold">ONMETA</div>
+      <Image
+        src={allAssests.onMetaLogo}
+        alt="logo"
+        width="240"
+        height="240"
+        // className="rounded-full"
+      />
       <div className="flex flex-col items-center">
         <div className="flex items-center justify-center">
           <Image
